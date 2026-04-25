@@ -1,0 +1,41 @@
+# --- SECRETS (CRITICAL) ---
+# Never, ever push these. This is where your Supabase & Gemini keys live.
+.env
+.env.local
+.env.production
+.env.development
+
+# --- DEPENDENCIES ---
+# We don't need to track these; 'npm install' fetches them on any machine.
+node_modules/
+jspm_packages/
+
+# --- NEXT.JS BUILD OUTPUT ---
+# This is generated automatically every time you run or build the app.
+.next/
+out/
+build/
+
+# --- PRISMA ---
+# We ignore the generated client if you've customized the output path,
+# but usually, we just ignore the local SQLite DB if you were using one.
+dev.db
+dev.db-journal
+
+# --- OS TRASH ---
+# Random files your computer creates that no one else needs.
+.DS_Store
+Thumbs.db
+*.local
+
+# --- LOGS ---
+# Keeps your repo clear of error logs.
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# --- ASSETS (OPTIONAL) ---
+# If your background video is huge (>50MB), ignore it and host it elsewhere.
+# Otherwise, you can keep it in /public if it's optimized.
+# public/shrimay-bg.mp4

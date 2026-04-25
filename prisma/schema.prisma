@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Question {
+  id            String   @id @default(cuid())
+  text          String   // Transcribed text (English/Hindi/Hinglish)
+  originalVoice String?  // URL to the stored audio file (S3/Supabase Storage)
+  studentEmail  String   
+  isVerified    Boolean  @default(false)
+  otp           String?  
+  status        Status   @default(PENDING)
+  createdAt     DateTime @default(now())
+  
+  answer        Answer?
+}
+
+model Answer {
+  id          String   @id @default(cuid())
+  text        String   // Your witty response
+  voiceUrl    String?  // Your voice reply
+  questionId  String   @unique
+  question    Question @relation(fields: [questionId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+enum Status {
+  PENDING
+  ANSWERED
+  IGNORE 
+}

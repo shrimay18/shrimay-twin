@@ -19,13 +19,15 @@ model Question {
   answer        Answer?
 }
 
+// Update your Answer model
 model Answer {
-  id          String   @id @default(cuid())
-  text        String   // Your witty response
-  voiceUrl    String?  // Your voice reply
-  questionId  String   @unique
-  question    Question @relation(fields: [questionId], references: [id])
-  createdAt   DateTime @default(now())
+  id         String   @id @default(cuid())
+  text       String   
+  // We use Unsupported for the vector type in Prisma
+  embedding  Unsupported("vector(768)")? 
+  questionId String   @unique
+  question   Question @relation(fields: [questionId], references: [id])
+  createdAt  DateTime @default(now())
 }
 
 enum Status {
